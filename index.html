@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Me 1.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Trust Me 1.0</h1>
+    </header>
+
+    <nav>
+        <button onclick="goToSection('home')">Domů</button>
+        <button onclick="goToSection('profile')">Můj Profil</button>
+        <button onclick="goToSection('posts')">Příspěvky</button>
+        <button onclick="goToSection('settings')">Nastavení</button>
+    </nav>
+
+    <main>
+        <!-- Domovská stránka -->
+        <section id="home" class="section active">
+            <h2>Trust Me 1.0 je ve vývoji!</h2>
+            <p>Pracujeme na mobilní aplikaci, která brzy vyjde.</p>
+            <p>Připoj se už teď a vytvoř si profil!</p>
+        </section>
+
+        <!-- Profilová sekce -->
+        <section id="profile" class="section">
+            <h2>Můj Profil</h2>
+            <div id="profile-container">
+                <form id="profile-form">
+                    <label>Jméno:</label>
+                    <input type="text" id="username" required>
+                    
+                    <label>Popis:</label>
+                    <input type="text" id="description" required>
+
+                    <label>URL Profilového obrázku:</label>
+                    <input type="text" id="profilePic" placeholder="https://example.com/image.jpg">
+
+                    <button type="button" onclick="saveProfile()">Uložit Profil</button>
+                </form>
+
+                <div id="profile-display" class="hidden">
+                    <img id="display-pic" src="" alt="Profilová fotka">
+                    <h3 id="display-name"></h3>
+                    <p id="display-description"></p>
+                    <span id="verified-badge"></span>
+                    <button onclick="editProfile()">Upravit Profil</button>
+                    <button onclick="reportUser()">Nahlásit uživatele 🚨</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Příspěvky -->
+        <section id="posts" class="section">
+            <h2>Příspěvky</h2>
+            <form id="post-form">
+                <input type="text" id="post-content" placeholder="Napiš něco..." required>
+                <button type="button" onclick="addPost()">Přidat příspěvek</button>
+            </form>
+            <div id="posts-container"></div>
+        </section>
+
+        <!-- Nastavení -->
+        <section id="settings" class="section">
+            <h2>Nastavení</h2>
+            <p>Zatím zde nic není. Brzy přidáme nové funkce!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Trust Me 1.0</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+...
+<body onload="checkLogin()">
+    <header>
+        <h1>Trust Me 1.0</h1>
+        <button onclick="logout()">Odhlásit se</button>
+    </header>
+...
