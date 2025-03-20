@@ -3,26 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrace - Trust Me 1.0</title>
+    <title>Registrace</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="form-container">
-        <h2>Registrace</h2>
-        <form id="register-form">
-            <label>Email:</label>
-            <input type="email" id="reg-email" required>
-
-            <label>Heslo:</label>
-            <input type="password" id="reg-password" required>
-
-            <button type="button" onclick="register()">Registrovat</button>
-        </form>
-
-        <p>Máte už účet? <a href="login.html">Přihlásit se</a></p>
-    </div>
-
+    <h2>Registrace</h2>
+    <input type="text" id="username" placeholder="Uživatelské jméno">
+    <input type="password" id="password" placeholder="Heslo">
+    <button onclick="register()">Registrovat</button>
+    <p>Máte účet? <a href="login.html">Přihlásit se</a></p>
     <script src="script.js"></script>
 </body>
 </html>
