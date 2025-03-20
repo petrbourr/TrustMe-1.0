@@ -2,63 +2,33 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
 header {
-    background-color: #007bff;
+    background: #333;
     color: white;
-    padding: 15px;
-    font-size: 24px;
-}
-
-nav {
-    margin: 20px 0;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-.hidden {
-    display: none;
-}
-
-#profile-display img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 10px;
-}
-
-footer {
-    margin-top: 20px;
     padding: 10px;
-    background: #007bff;
-    color: white;
 }
 
-#verified-badge {
-    font-weight: bold;
-    color: green;
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+}
+
+#chatBox {
+    border: 1px solid black;
+    height: 300px;
+    overflow-y: scroll;
+    background: white;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
 }
