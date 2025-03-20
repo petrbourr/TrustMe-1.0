@@ -1,54 +1,75 @@
-// Kontrola přihlášení
-function checkLogin() {
-    if (!localStorage.getItem("loggedInUser")) {
-        window.location.href = "login.html";
-    }
-}
-
 // Registrace uživatele
 function register() {
-    let email = document.getElementById("reg-email").value.trim();
-    let password = document.getElementById("reg-password").value.trim();
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
-    if (!email || !password) {
+    if (!username || !password) {
         alert("Vyplňte všechny údaje!");
         return;
     }
 
-    if (localStorage.getItem(email)) {
-        alert("Tento e-mail je již registrován!");
-        return;
-    }
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push({ username, password });
+    localStorage.setItem("users", JSON.stringify(users));
 
-    let userData = { email, password };
-    localStorage.setItem(email, JSON.stringify(userData));
-    alert("Registrace úspěšná! Nyní se přihlaste.");
+    alert("Registrace úspěšná!");
     window.location.href = "login.html";
 }
 
 // Přihlášení uživatele
 function login() {
-    let email = document.getElementById("login-email").value.trim();
-    let password = document.getElementById("login-password").value.trim();
+    let loginUsername = document.getElementById("loginUsername").value;
+    let loginPassword = document.getElementById("loginPassword").value;
+    let rememberMe = document.getElementById("rememberMe").checked;
 
-    let userData = localStorage.getItem(email);
-    if (!userData) {
-        alert("Uživatel neexistuje!");
-        return;
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let user = users.find(u => u.username === loginUsername && u.password === loginPassword);
+
+    if (user) {
+        if (rememberMe) {
+            localStorage.setItem("currentUser", JSON.stringify(user));
+        } else {
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
+        }
+        alert("Přihlášení úspěšné!");
+        window.location.href = "chat.html";
+    } else {
+        alert("Neplatné přihlašovací údaje!");
     }
-
-    let user = JSON.parse(userData);
-    if (user.password !== password) {
-        alert("Špatné heslo!");
-        return;
-    }
-
-    localStorage.setItem("loggedInUser", email);
-    window.location.href = "index.html";
 }
 
 // Odhlášení
 function logout() {
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
     window.location.href = "login.html";
+}
+
+// Vyhledávání uživatelů
+function searchUsers() {
+    let query = document.getElementById("searchUser").value.toLowerCase();
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let userList = document.getElementById("userList");
+
+    userList.innerHTML = "";
+    users.forEach(user => {
+        if (user.username.toLowerCase().includes(query)) {
+            let li = document.createElement("li");
+            li.textContent = user.username;
+            userList.appendChild(li);
+        }
+    });
+}
+
+// Odeslání zprávy
+function sendMessage() {
+    let messageInput = document.getElementById("messageInput").value;
+    let chatBox = document.getElementById("chatBox");
+
+    if (messageInput.trim() !== "") {
+        let messageDiv = document.createElement("div");
+        messageDiv.textContent = messageInput;
+        chatBox.appendChild(messageDiv);
+        document.getElementById("messageInput").value = "";
+    }
 }
